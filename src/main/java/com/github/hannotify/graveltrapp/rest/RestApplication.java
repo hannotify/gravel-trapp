@@ -1,4 +1,4 @@
-package com.github.hannotify.rest;
+package com.github.hannotify.graveltrapp.rest;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
