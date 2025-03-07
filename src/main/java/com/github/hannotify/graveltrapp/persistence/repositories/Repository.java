@@ -2,10 +2,12 @@ package com.github.hannotify.graveltrapp.persistence.repositories;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 import java.util.Optional;
 import java.util.SequencedCollection;
 
+@Transactional
 public abstract class Repository<E, ID> {
     @PersistenceContext(unitName = "gravel-trapp")
     private EntityManager em;

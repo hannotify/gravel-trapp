@@ -3,6 +3,7 @@ package com.github.hannotify.graveltrapp.persistence.projections;
 import com.github.hannotify.graveltrapp.persistence.entities.Driver;
 import com.github.hannotify.graveltrapp.persistence.entities.RaceResult;
 import com.github.hannotify.graveltrapp.persistence.repositories.RaceResultRepository;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
+@RequestScoped
 public class StandingsProjector {
     @Inject
     private RaceResultRepository raceResultRepository;
@@ -31,7 +33,6 @@ public class StandingsProjector {
             entry(8, 4),
             entry(9, 2),
             entry(10, 1));
-
 
     public List<StandingsEntry> calculateStandings() {
         Map<Driver, Integer> raceResults = raceResultRepository.findAll().stream()
