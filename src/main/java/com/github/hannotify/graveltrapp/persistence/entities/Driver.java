@@ -58,6 +58,14 @@ public class Driver {
         this.number = number;
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     public Set<RaceResult> getRaceResults() {
         return raceResults;
     }

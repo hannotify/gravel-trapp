@@ -74,4 +74,15 @@ public class RaceResult {
     public void setFastestLap(boolean fastestLap) {
         this.fastestLap = fastestLap;
     }
+
+    @Override
+    public String toString() {
+        return "RaceResult{" +
+                "id=" + id +
+                ", race=" + race +
+                ", driver=" + driver +
+                ", position=" + position +
+                ", fastestLap=" + fastestLap +
+                '}';
+    }
 }

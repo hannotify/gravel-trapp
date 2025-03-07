@@ -1,4 +1,4 @@
-package com.github.hannotify.graveltrapp.persistence;
+package com.github.hannotify.graveltrapp.persistence.repositories;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
