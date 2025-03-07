@@ -1,6 +1,9 @@
-package com.github.hannotify.graveltrapp.persistence;
+package com.github.hannotify.graveltrapp.persistence.entities;
 
+import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Converter;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,7 +26,8 @@ public class Race {
     private String name;
 
     @Column(nullable = false)
-    private Year year;
+    @Convert(converter = YearAttributeConverter.class)
+    private Year raceYear;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -35,10 +39,14 @@ public class Race {
     public Race() {
     }
 
-    public Race(String name, Year year, RaceType raceType) {
+    public Race(String name, Year raceYear, RaceType raceType) {
         this.name = name;
-        this.year = year;
+        this.raceYear = raceYear;
         this.raceType = raceType;
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public String getName() {
@@ -49,12 +57,12 @@ public class Race {
         this.name = name;
     }
 
-    public Year getYear() {
-        return year;
+    public Year getRaceYear() {
+        return raceYear;
     }
 
-    public void setYear(Year year) {
-        this.year = year;
+    public void setRaceYear(Year year) {
+        this.raceYear = year;
     }
 
     public RaceType getRaceType() {
@@ -67,5 +75,18 @@ public class Race {
 
     public Set<RaceResult> getRaceResults() {
         return raceResults;
+    }
+
+    @Converter
+    public static class YearAttributeConverter implements AttributeConverter<Year, Short> {
+        @Override
+        public Short convertToDatabaseColumn(Year attribute) {
+            return attribute != null ? (short) attribute.getValue() : null;
+        }
+
+        @Override
+        public Year convertToEntityAttribute(Short dbData) {
+            return dbData != null ? Year.of(dbData) : null;
+        }
     }
 }

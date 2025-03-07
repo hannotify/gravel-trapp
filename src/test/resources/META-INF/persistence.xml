@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="gravel-trapp-h2">
+        <class>com.github.hannotify.graveltrapp.persistence.entities.Driver</class>
+        <class>com.github.hannotify.graveltrapp.persistence.entities.Team</class>
+        <class>com.github.hannotify.graveltrapp.persistence.entities.Race</class>
+        <class>com.github.hannotify.graveltrapp.persistence.entities.RaceResult</class>
+        <class>com.github.hannotify.graveltrapp.persistence.entities.Race$YearAttributeConverter</class>
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:mem:testdb"/>
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="jakarta.persistence.schema-generation.create-source" value="metadata"/>
+            <property name="jakarta.persistence.schema-generation.drop-source" value="metadata"/>
+            <property name="jakarta.persistence.sql-load-script-source" value="META-INF/initial-data.sql" />
+            <property name="eclipselink.logging.level" value="fine"/>
+        </properties>
+    </persistence-unit>
+</persistence>

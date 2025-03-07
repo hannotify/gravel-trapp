@@ -1,4 +1,4 @@
-package com.github.hannotify.graveltrapp.persistence;
+package com.github.hannotify.graveltrapp.persistence.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,9 +32,14 @@ public class Driver {
     public Driver() {
     }
 
-    public Driver(String name, Integer number) {
+    public Driver(String name, Integer number, Team team) {
         this.name = name;
         this.number = number;
+        this.team = team;
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public String getName() {
