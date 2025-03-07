@@ -39,4 +39,16 @@
 
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
+
+    <library id="jdbcLib">
+        <fileset dir="jdbc" includes="*.jar"/>
+    </library>
+
+    <dataSource jndiName="jdbc/graveltrapp">
+        <jdbcDriver libraryRef="jdbcLib"/>
+        <properties serverName="localhost" portNumber="6306"
+                    databaseName="graveltrapp"
+                    user="root"
+                    password="secure"/>
+    </dataSource>
 </server>
