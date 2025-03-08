@@ -1,4 +1,4 @@
-package com.github.hannotify.graveltrapp.persistence.projections;
+package com.github.hannotify.graveltrapp.persistence.beans;
 
 import com.github.hannotify.graveltrapp.persistence.entities.Driver;
 import com.github.hannotify.graveltrapp.persistence.entities.RaceResult;
@@ -18,7 +18,6 @@ import static java.util.stream.Collectors.toList;
 
 @RequestScoped
 public class StandingsProjector {
-    @Inject
     private RaceResultRepository raceResultRepository;
 
     private static final int POINTS_FOR_FASTEST_LAP = 1;
@@ -33,6 +32,14 @@ public class StandingsProjector {
             entry(8, 4),
             entry(9, 2),
             entry(10, 1));
+
+    // CDI needs a no-args constructor
+    StandingsProjector() {}
+
+    @Inject
+    public StandingsProjector(RaceResultRepository raceResultRepository) {
+        this.raceResultRepository = raceResultRepository;
+    }
 
     public List<StandingsEntry> calculateStandings() {
         Map<Driver, Integer> raceResults = raceResultRepository.findAll().stream()
