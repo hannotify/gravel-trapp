@@ -22,6 +22,10 @@ public class RaceResultMapper {
         this.driverRepository = driverRepository;
     }
 
+    public RaceResultDto toDto(RaceResult entity) {
+        return new RaceResultDto(entity.getRace().getId(), entity.getDriver().getId(), entity.getPosition(), entity.isFastestLap());
+    }
+
     public RaceResult toEntity(RaceResultDto dto) {
         var race = raceRepository.findById(dto.raceId())
                 .orElseThrow(() -> new EntityNotFoundException("Race with id %s not found".formatted(dto.raceId())));

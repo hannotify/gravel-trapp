@@ -31,7 +31,17 @@ public class StandingsProjector {
             entry(7, 6),
             entry(8, 4),
             entry(9, 2),
-            entry(10, 1));
+            entry(10, 1),
+            entry(11, 0),
+            entry(12, 0),
+            entry(13, 0),
+            entry(14, 0),
+            entry(15, 0),
+            entry(16, 0),
+            entry(17, 0),
+            entry(18, 0),
+            entry(19, 0),
+            entry(20, 0));
 
     // CDI needs a no-args constructor
     StandingsProjector() {}
@@ -73,6 +83,6 @@ public class StandingsProjector {
     }
 
     private int calculatePoints(int position, boolean fastestLap) {
-        return POINT_SYSTEM.get(position) + (fastestLap ? POINTS_FOR_FASTEST_LAP : 0);
+        return POINT_SYSTEM.get(position) + (position <= 10 && fastestLap ? POINTS_FOR_FASTEST_LAP : 0);
     }
 }
