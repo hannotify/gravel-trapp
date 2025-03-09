@@ -3,6 +3,7 @@ package com.github.hannotify.graveltrapp.rest;
 import com.github.hannotify.graveltrapp.dto.RaceResultDto;
 import com.github.hannotify.graveltrapp.persistence.beans.RaceResultMapper;
 import com.github.hannotify.graveltrapp.persistence.repositories.RaceResultRepository;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -16,6 +17,7 @@ import jakarta.ws.rs.core.Response;
 import java.net.URI;
 import java.util.UUID;
 
+@RequestScoped
 @Path("race-results")
 public class RaceResultResource {
     private RaceResultRepository raceResultRepository;
