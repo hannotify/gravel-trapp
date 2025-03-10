@@ -6,6 +6,9 @@ import com.github.hannotify.graveltrapp.persistence.entities.RaceResult;
 import com.github.hannotify.graveltrapp.persistence.repositories.RaceResultRepository;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.InternalServerErrorException;
+import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.faulttolerance.Timeout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,7 @@ import static java.util.stream.Collectors.toList;
 @RequestScoped
 public class StandingsProjector {
     private RaceResultRepository raceResultRepository;
+    private List<StandingsEntry> cachedStandings;
 
     private static final int POINTS_FOR_FASTEST_LAP = 1;
     private static final Map<Integer, Integer> POINT_SYSTEM = Map.ofEntries(
@@ -52,6 +56,8 @@ public class StandingsProjector {
         this.raceResultRepository = raceResultRepository;
     }
 
+    @Timeout(2000)
+    @Fallback(fallbackMethod = "fallbackForCalculateStandings")
     public List<StandingsEntry> calculateStandings() {
         Map<Driver, Integer> raceResults = raceResultRepository.findAll().stream()
                 .collect(groupingBy(
@@ -80,7 +86,16 @@ public class StandingsProjector {
             standings.add(new StandingsEntry(position, driverName, teamName, points));
         }
 
+        cachedStandings = standings;
         return standings;
+    }
+
+    private List<StandingsEntry> fallbackForCalculateStandings() {
+        if (cachedStandings == null) {
+            throw new InternalServerErrorException("The championship standings are not available.");
+        }
+
+        return cachedStandings;
     }
 
     private int calculatePoints(int position, boolean fastestLap) {
