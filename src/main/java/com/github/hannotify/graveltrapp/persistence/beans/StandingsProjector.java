@@ -1,5 +1,6 @@
 package com.github.hannotify.graveltrapp.persistence.beans;
 
+import com.github.hannotify.graveltrapp.dto.StandingsEntry;
 import com.github.hannotify.graveltrapp.persistence.entities.Driver;
 import com.github.hannotify.graveltrapp.persistence.entities.RaceResult;
 import com.github.hannotify.graveltrapp.persistence.repositories.RaceResultRepository;
