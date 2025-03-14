@@ -10,7 +10,7 @@ import java.util.SequencedCollection;
 @Transactional
 public abstract class Repository<E, ID> {
     @PersistenceContext(unitName = "gravel-trapp")
-    private EntityManager em;
+    protected EntityManager em;
     private final Class<E> entityClass;
 
     public Repository() {
