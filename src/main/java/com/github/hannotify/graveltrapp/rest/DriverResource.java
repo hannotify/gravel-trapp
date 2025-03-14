@@ -3,6 +3,7 @@ package com.github.hannotify.graveltrapp.rest;
 import com.github.hannotify.graveltrapp.dto.DriverDto;
 import com.github.hannotify.graveltrapp.persistence.beans.DriverMapper;
 import com.github.hannotify.graveltrapp.persistence.repositories.DriverRepository;
+import jakarta.annotation.security.PermitAll;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RequestScoped
 @Path("drivers")
+@PermitAll
 public class DriverResource {
     private DriverRepository driverRepository;
     private DriverMapper driverMapper;

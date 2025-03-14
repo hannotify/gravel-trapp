@@ -1,10 +1,11 @@
 package com.github.hannotify.graveltrapp.rest;
 
-import com.github.hannotify.graveltrapp.dto.DriverDto;
 import com.github.hannotify.graveltrapp.dto.RaceResultDto;
 import com.github.hannotify.graveltrapp.persistence.beans.RaceResultMapper;
 import com.github.hannotify.graveltrapp.persistence.entities.RaceResult;
 import com.github.hannotify.graveltrapp.persistence.repositories.RaceResultRepository;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityNotFoundException;
@@ -17,18 +18,16 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema;
 
 import java.net.URI;
-import java.util.Properties;
 import java.util.UUID;
 
 @RequestScoped
 @Path("race-results")
+@PermitAll
 public class RaceResultResource {
     private RaceResultRepository raceResultRepository;
     private RaceResultMapper raceResultMapper;
@@ -63,6 +62,7 @@ public class RaceResultResource {
 
     @POST
     @Consumes("application/json")
+    @RolesAllowed("admin")
     @APIResponse(
             responseCode = "201",
             description = "Race result successfully created.")

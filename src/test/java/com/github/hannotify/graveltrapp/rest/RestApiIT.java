@@ -57,8 +57,17 @@ public class RestApiIT {
         assertThat(raceId).isNotNull();
         assertThat(driverId).isNotNull();
 
+        var username = "joep";
+        var password = "woof";
+
+        createNewUser(username, password);
+        var jwt = login(username, password);
+
+        assertThat(jwt).isNotNull();
+
         given()
                 .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + jwt)
                 .body("""
                         {
                             "raceId": "%s",
@@ -70,5 +79,35 @@ public class RestApiIT {
                 .when().post("http://localhost:9080/gravel-trapp/api/race-results")
                 .then()
                 .statusCode(201);
+    }
+
+    private void createNewUser(String username, String password) {
+        given()
+                .contentType(ContentType.JSON)
+                .body("""
+                        {
+                            "username": "%s",
+                            "password": "%s",
+                            "roles": ["admin"]
+                        }
+                        """.formatted(username, password))
+                .when().post("http://localhost:9080/gravel-trapp/api/user")
+                .then()
+                .statusCode(201);
+    }
+
+    private String login(String username, String password) {
+        return given()
+                .contentType(ContentType.JSON)
+                .body("""
+                        {
+                            "username": "%s",
+                            "password": "%s"
+                        }
+                        """.formatted(username, password))
+                .when().post("http://localhost:9080/gravel-trapp/api/user/login")
+                .then()
+                .statusCode(200)
+                .extract().response().body().asString();
     }
 }

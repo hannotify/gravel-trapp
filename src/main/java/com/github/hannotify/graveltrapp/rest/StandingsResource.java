@@ -2,6 +2,7 @@ package com.github.hannotify.graveltrapp.rest;
 
 import com.github.hannotify.graveltrapp.dto.StandingsEntry;
 import com.github.hannotify.graveltrapp.persistence.beans.StandingsProjector;
+import jakarta.annotation.security.PermitAll;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RequestScoped
 @Path("/standings")
+@PermitAll
 public class StandingsResource {
     private StandingsProjector standingsProjector;
 
