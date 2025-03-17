@@ -6,11 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="gravel-trapp" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="gravel-trapp" target="21" />
-      <module name="gravel-trapp-backend" target="21" />
-    </bytecodeTargetLevel>
   </component>
 </project>
