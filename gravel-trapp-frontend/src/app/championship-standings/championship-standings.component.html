@@ -1,1 +1,27 @@
-<p>championship-standings works!</p>
+<mat-toolbar>
+  <span>Championship Standings</span>
+</mat-toolbar>
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="position">
+    <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+    <mat-cell *matCellDef="let standingsEntry"> {{standingsEntry.position}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="driverName">
+    <mat-header-cell *matHeaderCellDef>Driver</mat-header-cell>
+    <mat-cell *matCellDef="let standingsEntry"> {{standingsEntry.driverName}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="team">
+    <mat-header-cell *matHeaderCellDef>Team</mat-header-cell>
+    <mat-cell *matCellDef="let standingsEntry"> {{standingsEntry.team}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="points">
+    <mat-header-cell *matHeaderCellDef>Points</mat-header-cell>
+    <mat-cell *matCellDef="let standingsEntry"> {{standingsEntry.points}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
