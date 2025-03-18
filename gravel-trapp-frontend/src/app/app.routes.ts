@@ -6,8 +6,8 @@ import {EnterRaceResultComponent} from './enter-race-result/enter-race-result.co
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'championship-standings', component: ChampionshipStandingsComponent },
-  { path: 'enter-race-result', component: EnterRaceResultComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'home', component: HomeComponent, title: 'Home' },
+  { path: 'championship-standings', component: ChampionshipStandingsComponent, title: 'Championship Standings' },
+  { path: 'enter-race-result', component: EnterRaceResultComponent, title: 'Enter Race Result' },
+  { path: 'about', component: AboutComponent, title: 'About' }
 ];
