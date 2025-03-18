@@ -40,6 +40,13 @@
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
+    <cors domain="/gravel-trapp/api"
+          allowedOrigins="http://localhost:4200"
+          allowedMethods="GET, DELETE, POST, PUT, OPTIONS, HEAD"
+          allowedHeaders="Referer, Content-Type, Accept, Authorization"
+          allowCredentials="true"
+          maxAge="3600"/>
+
     <library id="jdbcLib">
         <fileset dir="jdbc" includes="*.jar"/>
     </library>
