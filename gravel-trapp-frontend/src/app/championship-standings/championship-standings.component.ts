@@ -9,6 +9,7 @@ import {
   MatTable
 } from '@angular/material/table';
 import {MatToolbar} from '@angular/material/toolbar';
+import {StandingsService} from '../standings.service';
 
 @Component({
   selector: 'app-championship-standings',
@@ -29,19 +30,18 @@ import {MatToolbar} from '@angular/material/toolbar';
   styleUrl: './championship-standings.component.css'
 })
 export class ChampionshipStandingsComponent {
-  displayedColumns = ['position', 'driverName', 'team', 'points'];
-  dataSource = STANDINGS;
+  displayedColumns = ['position', 'driverName', 'teamName', 'points'];
+  dataSource: StandingsEntry[] = [];
+
+  constructor(private standingsService: StandingsService) {
+    this.standingsService.getStandings().subscribe((response) => this.dataSource = response);
+  }
 }
 
 export interface StandingsEntry {
   position: number;
   driverName: string;
-  team: string;
+  teamName: string;
   points: number;
 }
 
-const STANDINGS: StandingsEntry[] = [
-  { position: 1, driverName: 'Driver A', team: 'Team X', points: 100 },
-  { position: 2, driverName: 'Driver B', team: 'Team Y', points: 90 },
-  { position: 3, driverName: 'Driver C', team: 'Team Z', points: 80 }
-];
