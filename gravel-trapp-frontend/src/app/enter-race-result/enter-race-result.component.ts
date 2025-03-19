@@ -7,6 +7,8 @@ import {DriverService} from '../driver.service';
 import {MatInput} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
+import {RaceResultService} from '../race-result.service';
+import {RaceResult} from '../race-result.service';
 
 @Component({
   selector: 'app-enter-race-result',
@@ -27,35 +29,35 @@ import {MatButton} from '@angular/material/button';
 export class EnterRaceResultComponent {
   races: Race[] = [];
   drivers: Driver[] = [];
+  raceResult: RaceResult = { raceId: '', driverId: '', position: 0 };
 
-  selectedRaceId: string = '';
-  selectedDriverId: string = '';
-  selectedPosition: number = 0;
-
-  constructor(private raceService: RaceService, private driverService: DriverService) {
+  constructor(private raceService: RaceService, private driverService: DriverService, private raceResultService: RaceResultService) {
     this.raceService.getRaces().subscribe((response) => this.races = response);
     this.driverService.getDrivers().subscribe((response) => this.drivers = response);
   }
 
   changeRace(value: string) {
-    this.selectedRaceId = value;
+    this.raceResult.raceId = value;
   }
 
   changeDriver(value: string) {
-    this.selectedDriverId = value;
+    this.raceResult.driverId = value;
   }
 
   changePosition(event: any) {
-    this.selectedPosition = event.target.value;
-  }
-
-  submitRaceResult() {
-    console.log(this.selectedRaceId, this.selectedDriverId, this.selectedPosition);
+    this.raceResult.position = event.target.value;
   }
 
   isFormValid() {
-    return this.selectedRaceId && this.selectedDriverId && this.selectedPosition
-      && this.selectedPosition > 0 && this.selectedPosition <= this.drivers.length;
+    return this.raceResult.raceId && this.raceResult.driverId && this.raceResult.position
+      && this.raceResult.position > 0 && this.raceResult.position <= this.drivers.length;
+  }
+
+  submitRaceResult() {
+    console.log(this.raceResult);
+    this.raceResultService.postRaceResult(this.raceResult).subscribe(() => {
+      console.log("POST request sent")
+    });
   }
 }
 
