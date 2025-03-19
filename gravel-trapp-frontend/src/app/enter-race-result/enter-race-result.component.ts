@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {RaceResultService} from '../race-result.service';
 import {RaceResult} from '../race-result.service';
+import {MatCheckbox} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-enter-race-result',
@@ -21,7 +22,8 @@ import {RaceResult} from '../race-result.service';
     MatInput,
     FormsModule,
     MatButton,
-    MatOption
+    MatOption,
+    MatCheckbox
   ],
   templateUrl: './enter-race-result.component.html',
   styleUrl: './enter-race-result.component.css'
@@ -29,7 +31,7 @@ import {RaceResult} from '../race-result.service';
 export class EnterRaceResultComponent {
   races: Race[] = [];
   drivers: Driver[] = [];
-  raceResult: RaceResult = { raceId: '', driverId: '', position: 0 };
+  raceResult: RaceResult = { raceId: '', driverId: '', position: 0, fastestLap: false };
 
   constructor(private raceService: RaceService, private driverService: DriverService, private raceResultService: RaceResultService) {
     this.raceService.getRaces().subscribe((response) => this.races = response);
@@ -48,6 +50,10 @@ export class EnterRaceResultComponent {
     this.raceResult.position = event.target.value;
   }
 
+  changeFastestLap(checked: boolean) {
+    this.raceResult.fastestLap = checked;
+  }
+
   isFormValid() {
     return this.raceResult.raceId && this.raceResult.driverId && this.raceResult.position
       && this.raceResult.position > 0 && this.raceResult.position <= this.drivers.length;
@@ -59,6 +65,7 @@ export class EnterRaceResultComponent {
       console.log("POST request sent")
     });
   }
+
 }
 
 interface Race {

@@ -26,4 +26,5 @@ export interface RaceResult {
   raceId: string;
   driverId: string;
   position: number;
+  fastestLap: boolean;
 }
