@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, ViewContainerRef} from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
@@ -11,6 +11,7 @@ import {MatButton} from '@angular/material/button';
 import {RaceResultService} from '../race-result.service';
 import {RaceResult} from '../race-result.service';
 import {MatCheckbox} from '@angular/material/checkbox';
+import {LoginComponent} from '../login/login.component';
 
 @Component({
   selector: 'app-enter-race-result',
@@ -37,7 +38,8 @@ export class EnterRaceResultComponent {
   constructor(private raceService: RaceService,
               private driverService: DriverService,
               private raceResultService: RaceResultService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private viewContainer: ViewContainerRef) {
     this.raceService.getRaces().subscribe((response) => this.races = response);
     this.driverService.getDrivers().subscribe((response) => this.drivers = response);
   }
@@ -63,9 +65,10 @@ export class EnterRaceResultComponent {
       && this.raceResult.position > 0 && this.raceResult.position <= this.drivers.length;
   }
 
-  showLoginDialog() {
-    console.log("401 - Show login dialog");
-  }
+  loadLoginDialog() {
+    console.log("401 - Load login dialog");
+    this.viewContainer.createComponent(LoginComponent);
+  };
 
   submitRaceResult() {
     this.raceResultService.postRaceResult(this.raceResult).subscribe({
@@ -74,7 +77,7 @@ export class EnterRaceResultComponent {
       },
       error: (error) => {
         console.log(error.status);
-        error.status === 401 ? this.showLoginDialog() : console.log("Generic error occurred");
+        error.status === 401 ? this.loadLoginDialog() : console.log("Generic error occurred");
       }
     });
   }

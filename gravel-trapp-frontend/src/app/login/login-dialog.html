@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>This action requires elevation.</h2>
+<mat-dialog-content>
+  <p>Please log in.</p>
+  <mat-form-field>
+    <mat-label>User name</mat-label>
+    <input matInput [(ngModel)]="userName" />
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input type="password" matInput [(ngModel)]="password" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-stroked-button (click)="login()">Log in</button>
+</mat-dialog-actions>
