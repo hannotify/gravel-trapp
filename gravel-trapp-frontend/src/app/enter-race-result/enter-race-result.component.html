@@ -1,3 +1,37 @@
 <mat-toolbar>
   <span>Enter Race Result</span>
 </mat-toolbar>
+<form class="enter-race-result-form" (ngSubmit)="submitRaceResult()">
+  <mat-form-field>
+    <mat-label>Race</mat-label>
+    <mat-select (selectionChange)="changeRace($event.value)">
+      @for (race of races; track race) {
+        <mat-option [value]="race.id">{{race.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-label>Driver</mat-label>
+    <mat-select (selectionChange)="changeDriver($event.value)">
+      @for (driver of drivers; track driver) {
+        <mat-option [value]="driver.id">{{driver.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <input
+      type="number"
+      class="form-control"
+      matInput
+      name="position"
+      placeholder="Position"
+      min="1"
+      [max]="drivers.length"
+      (input)="changePosition($event)">
+  </mat-form-field>
+  <br />
+  <button mat-raised-button type="submit" [disabled]="!isFormValid()">Submit</button>
+</form>
+
