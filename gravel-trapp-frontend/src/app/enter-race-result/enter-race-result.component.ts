@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {RaceService} from '../race.service';
@@ -33,7 +34,10 @@ export class EnterRaceResultComponent {
   drivers: Driver[] = [];
   raceResult: RaceResult = { raceId: '', driverId: '', position: 0, fastestLap: false };
 
-  constructor(private raceService: RaceService, private driverService: DriverService, private raceResultService: RaceResultService) {
+  constructor(private raceService: RaceService,
+              private driverService: DriverService,
+              private raceResultService: RaceResultService,
+              private snackBar: MatSnackBar) {
     this.raceService.getRaces().subscribe((response) => this.races = response);
     this.driverService.getDrivers().subscribe((response) => this.drivers = response);
   }
@@ -59,13 +63,21 @@ export class EnterRaceResultComponent {
       && this.raceResult.position > 0 && this.raceResult.position <= this.drivers.length;
   }
 
-  submitRaceResult() {
-    console.log(this.raceResult);
-    this.raceResultService.postRaceResult(this.raceResult).subscribe(() => {
-      console.log("POST request sent")
-    });
+  showLoginDialog() {
+    console.log("401 - Show login dialog");
   }
 
+  submitRaceResult() {
+    this.raceResultService.postRaceResult(this.raceResult).subscribe({
+      next: (response) => {
+        this.snackBar.open("The race result was submitted successfully.", "Close");
+      },
+      error: (error) => {
+        console.log(error.status);
+        error.status === 401 ? this.showLoginDialog() : console.log("Generic error occurred");
+      }
+    });
+  }
 }
 
 interface Race {
