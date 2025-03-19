@@ -38,7 +38,7 @@ export class ChampionshipStandingsComponent {
   }
 }
 
-export interface StandingsEntry {
+interface StandingsEntry {
   position: number;
   driverName: string;
   teamName: string;
