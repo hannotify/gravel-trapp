@@ -32,6 +32,9 @@
       (input)="changePosition($event)">
   </mat-form-field>
   <br />
+  <mat-checkbox (change)="changeFastestLap($event.checked)">Fastest lap</mat-checkbox>
+  <br />
+  <br />
   <button mat-raised-button type="submit" [disabled]="!isFormValid()">Submit</button>
 </form>
 
