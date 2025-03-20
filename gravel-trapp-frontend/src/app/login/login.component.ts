@@ -4,6 +4,8 @@ import {FormsModule} from '@angular/forms';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
+import {LoginService, User} from '../services/login.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'login-dialog',
@@ -20,10 +22,12 @@ import {MatButton} from '@angular/material/button';
   ]
 })
 export class LoginDialog {
-  userName: string = '';
-  password: string = '';
+  user: User = {username: '', password: ''};
 
-  constructor(public dialogRef: MatDialogRef<LoginDialog>) {
+  constructor(
+    public dialogRef: MatDialogRef<LoginDialog>,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar) {
   }
 
   cancel() {
@@ -31,7 +35,16 @@ export class LoginDialog {
   }
 
   login() {
-    console.log('Calling login endpoint with user name: ' + this.userName + ' and password: ' + this.password);
+    console.log('Calling login endpoint with user name: ' + this.user.username + ' and password: ' + this.user.password);
+    this.loginService.postLogin(this.user).subscribe({
+      next: (jwt) => {
+        localStorage.setItem('gravel-trapp-jwt', jwt);
+        this.dialogRef.close();
+      },
+      error: (response) => {
+        this.snackBar.open("Login failed.", "Close", {duration: 3000});
+      }
+    });
   }
 }
 
@@ -47,7 +60,7 @@ export class LoginComponent {
 
   constructor(private dialog: MatDialog) {
     const dialogRef = this.dialog.open(LoginDialog, {
-      data: {userName: '', password: ''}
+      data: {user: {username: '', password: ''}}
     });
   }
 }
