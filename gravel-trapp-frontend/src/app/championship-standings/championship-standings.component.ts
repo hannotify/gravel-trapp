@@ -9,7 +9,7 @@ import {
   MatTable
 } from '@angular/material/table';
 import {MatToolbar} from '@angular/material/toolbar';
-import {StandingsService} from '../standings.service';
+import {StandingsService} from '../services/standings.service';
 
 @Component({
   selector: 'app-championship-standings',
