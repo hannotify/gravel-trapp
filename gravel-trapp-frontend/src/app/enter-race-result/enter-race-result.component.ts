@@ -3,13 +3,13 @@ import {MatToolbar} from '@angular/material/toolbar';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatOption, MatSelect} from '@angular/material/select';
-import {RaceService} from '../race.service';
-import {DriverService} from '../driver.service';
+import {RaceService} from '../services/race.service';
+import {DriverService} from '../services/driver.service';
 import {MatInput} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
-import {RaceResultService} from '../race-result.service';
-import {RaceResult} from '../race-result.service';
+import {RaceResultService} from '../services/race-result.service';
+import {RaceResult} from '../services/race-result.service';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {LoginComponent} from '../login/login.component';
 
@@ -73,7 +73,7 @@ export class EnterRaceResultComponent {
   submitRaceResult() {
     this.raceResultService.postRaceResult(this.raceResult).subscribe({
       next: (response) => {
-        this.snackBar.open("The race result was submitted successfully.", "Close");
+        this.snackBar.open("The race result was submitted successfully.", "Close", {duration: 3000});
       },
       error: (error) => {
         console.log(error.status);
