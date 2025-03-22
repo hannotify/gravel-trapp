@@ -9,8 +9,8 @@ insert into Driver (id, name, number, team_id) values (random_uuid(), 'Charles L
 insert into Driver (id, name, number, team_id) values (random_uuid(), 'Max Verstappen', 1, (select id from Team where name = 'Red Bull Racing'));
 insert into Driver (id, name, number, team_id) values (random_uuid(), 'Sergio Perez', 11, (select id from Team where name = 'Red Bull Racing'));
 
-insert into Race (id, name, raceYear, raceType) values (random_uuid(), 'Australian Grand Prix', 2022, 'REGULAR');
-insert into Race (id, name, raceYear, raceType) values (random_uuid(), 'Bahrain Grand Prix', 2022, 'REGULAR');
+insert into Race (id, name, raceYear) values (random_uuid(), 'Australian Grand Prix', 2022);
+insert into Race (id, name, raceYear) values (random_uuid(), 'Bahrain Grand Prix', 2022);
 
 insert into RaceResult (id, race_id, driver_id, position, fastestLap) values (random_uuid(), (select id from Race where name = 'Australian Grand Prix'), (select id from Driver where name = 'Lewis Hamilton'), 1, true);
 insert into RaceResult (id, race_id, driver_id, position, fastestLap) values (random_uuid(), (select id from Race where name = 'Australian Grand Prix'), (select id from Driver where name = 'Carlos Sainz'),2,false);

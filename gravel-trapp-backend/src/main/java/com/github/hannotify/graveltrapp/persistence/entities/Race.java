@@ -29,20 +29,15 @@ public class Race {
     @Convert(converter = YearAttributeConverter.class)
     private Year raceYear;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private RaceType raceType;
-
     @OneToMany(mappedBy = "race")
     private Set<RaceResult> raceResults = new HashSet<>();
 
     public Race() {
     }
 
-    public Race(String name, Year raceYear, RaceType raceType) {
+    public Race(String name, Year raceYear) {
         this.name = name;
         this.raceYear = raceYear;
-        this.raceType = raceType;
     }
 
     public UUID getId() {
@@ -63,14 +58,6 @@ public class Race {
 
     public void setRaceYear(Year year) {
         this.raceYear = year;
-    }
-
-    public RaceType getRaceType() {
-        return raceType;
-    }
-
-    public void setRaceType(RaceType raceType) {
-        this.raceType = raceType;
     }
 
     public Set<RaceResult> getRaceResults() {

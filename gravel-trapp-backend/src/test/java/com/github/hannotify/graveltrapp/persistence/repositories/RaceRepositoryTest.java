@@ -1,7 +1,6 @@
 package com.github.hannotify.graveltrapp.persistence.repositories;
 
 import com.github.hannotify.graveltrapp.persistence.entities.Race;
-import com.github.hannotify.graveltrapp.persistence.entities.RaceType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +48,7 @@ class RaceRepositoryTest extends RepositoryTest {
     }
 
     private Race createRace() {
-        var race = new Race("Monaco Grand Prix", Year.of(2025), RaceType.REGULAR);
+        var race = new Race("Monaco Grand Prix", Year.of(2025));
         raceRepository.create(race);
         return race;
     }
