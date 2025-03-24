@@ -76,8 +76,14 @@ export class EnterRaceResultComponent {
         this.snackBar.open("The race result was submitted successfully.", "Close", {duration: 3000});
       },
       error: (error) => {
-        console.log(error.status);
-        error.status === 401 ? this.loadLoginDialog() : console.log("Generic error occurred");
+        if (error.status === 401) {
+          this.loadLoginDialog();
+        } else if (error.status === 403) {
+          this.snackBar.open("This account is not authorized to enter race results.", "Close", {duration: 3000});
+          localStorage.removeItem('gravel-trapp-jwt');
+        } else {
+          console.log("Generic error occurred");
+        }
       }
     });
   }
