@@ -3,10 +3,12 @@
 
     <!-- Enable features -->
     <featureManager>
-        <feature>jakartaee-10.0</feature>
-        <feature>microProfile-7.0</feature>
+        <!--The following features were generated based on API usage detected in your application-->
+        <feature>mpFaultTolerance-4.0</feature>
+        <feature>appSecurity-5.0</feature>
+        <feature>cdi-4.0</feature>
+        <feature>mpOpenAPI-3.1</feature>
     </featureManager>
-
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
 
     <!-- For the keystore, default keys are generated and stored in a keystore. To provide the keystore password, generate an 
