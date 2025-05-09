@@ -1,4 +1,4 @@
-package com.github.hannotify.graveltrapp.persistence;
+package com.github.hannotify.graveltrapp.persistence.repositories;
 
 import com.github.hannotify.graveltrapp.persistence.entities.Driver;
 import jakarta.enterprise.context.RequestScoped;
