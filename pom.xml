@@ -19,7 +19,7 @@
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>10.0.0</version>
+            <version>11.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -44,6 +44,14 @@
                     <groupId>io.openliberty.tools</groupId>
                     <artifactId>liberty-maven-plugin</artifactId>
                     <version>3.11.2</version>
+                    <configuration>
+                        <runtimeArtifact>
+                            <groupId>io.openliberty.beta</groupId>
+                            <artifactId>openliberty-runtime</artifactId>
+                            <version>LATEST</version>
+                            <type>zip</type>
+                        </runtimeArtifact>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
