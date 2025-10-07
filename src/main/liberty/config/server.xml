@@ -4,7 +4,9 @@
     <!-- Enable features -->
     <featureManager>
         <platform>jakartaee-11.0</platform>
-        <feature>microProfile-7.0</feature>
+        <feature>cdi</feature>
+        <feature>data</feature>
+        <feature>persistence</feature>
     </featureManager>
 
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
@@ -39,4 +41,16 @@
 
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
+
+    <library id="jdbcLib">
+        <fileset dir="jdbc" includes="*.jar"/>
+    </library>
+
+    <dataSource jndiName="jdbc/graveltrapp">
+        <jdbcDriver libraryRef="jdbcLib"/>
+        <properties serverName="localhost" portNumber="6306"
+                    databaseName="graveltrapp"
+                    user="root"
+                    password="secure"/>
+    </dataSource>
 </server>

@@ -10,8 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -25,9 +24,14 @@
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
-            <version>7.0</version>
+            <version>6.0</version>
             <type>pom</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.2.0</version>
         </dependency>
     </dependencies>
 
@@ -45,6 +49,14 @@
                     <artifactId>liberty-maven-plugin</artifactId>
                     <version>3.11.2</version>
                     <configuration>
+                        <copyDependencies>
+                            <location>jdbc</location>
+                            <dependency>
+                                <groupId>com.mysql</groupId>
+                                <artifactId>mysql-connector-j</artifactId>
+                                <version>9.2.0</version>
+                            </dependency>
+                        </copyDependencies>
                         <runtimeArtifact>
                             <groupId>io.openliberty.beta</groupId>
                             <artifactId>openliberty-runtime</artifactId>
