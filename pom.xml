@@ -28,6 +28,11 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>26.7.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -44,6 +49,14 @@
                     <artifactId>liberty-maven-plugin</artifactId>
                     <version>3.11.2</version>
                     <configuration>
+                        <copyDependencies>
+                            <location>jdbc</location>
+                            <dependency>
+                                <groupId>com.mysql</groupId>
+                                <artifactId>mysql-connector-j</artifactId>
+                                <version>26.7.0</version>
+                            </dependency>
+                        </copyDependencies>
                         <runtimeArtifact>
                             <groupId>io.openliberty</groupId>
                             <artifactId>openliberty-runtime</artifactId>
