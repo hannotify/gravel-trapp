@@ -4,11 +4,13 @@
     <!-- Enable features -->
     <featureManager>
         <platform>jakartaee-11.0</platform>
+        <platform>microprofile-7.0</platform>
         <feature>cdi</feature>
         <feature>data</feature>
         <feature>persistence</feature>
         <feature>restfulWS</feature>
         <feature>jsonb</feature>
+        <feature>mpOpenAPI</feature>
     </featureManager>
 
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
