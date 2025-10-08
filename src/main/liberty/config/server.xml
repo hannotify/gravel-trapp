@@ -11,6 +11,7 @@
         <feature>restfulWS</feature>
         <feature>jsonb</feature>
         <feature>mpOpenAPI</feature>
+        <feature>mpFaultTolerance</feature>
     </featureManager>
 
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
