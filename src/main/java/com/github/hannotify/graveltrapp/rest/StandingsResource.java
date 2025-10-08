@@ -17,6 +17,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import java.util.List;
 
+@RequestScoped
 @Path("/standings")
 public class StandingsResource {
     private StandingsProjector standingsProjector;
