@@ -32,6 +32,15 @@ public class StandingsResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(
+            responseCode = "200",
+            description = "The championship standings.",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(type = SchemaType.ARRAY, implementation = StandingsEntry.class)))
+    @Operation(
+            summary = "Gets the championship standings.",
+            description = "Retrieves and returns the championship standings.")
     public List<StandingsEntry> getStandings() {
         return standingsProjector.calculateStandings();
     }

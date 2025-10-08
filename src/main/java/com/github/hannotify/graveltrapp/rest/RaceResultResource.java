@@ -15,6 +15,10 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponseSchema;
 
 import java.net.URI;
 import java.util.UUID;
@@ -37,6 +41,16 @@ public class RaceResultResource {
     @GET
     @Path("{raceId}")
     @Produces("application/json")
+    @APIResponseSchema(value = RaceResultDto.class,
+            responseDescription = "A race result.",
+            responseCode = "200")
+    @APIResponse(
+            responseCode = "404",
+            description = "Race result not found.",
+            content = @Content(mediaType = "application/json"))
+    @Operation(
+            summary = "Gets a specific race result.",
+            description = "Retrieves and returns a specific race result.")
     public RaceResultDto getRaceResult(@PathParam("raceId") String raceId) {
         return raceResultRepository.findById(UUID.fromString(raceId))
                 .map(raceResultMapper::toDto)
@@ -45,6 +59,15 @@ public class RaceResultResource {
 
     @POST
     @Consumes("application/json")
+    @APIResponse(
+            responseCode = "201",
+            description = "Race result successfully created.")
+    @APIResponse(
+            responseCode = "400",
+            description = "The race or driver that was supplied doesn't exist.")
+    @Operation(
+            summary = "Adds a race result.",
+            description = "Adds a specific race result.")
     public Response addRaceResult(RaceResultDto raceResultDto) {
         RaceResult raceResultEntity;
         try {
