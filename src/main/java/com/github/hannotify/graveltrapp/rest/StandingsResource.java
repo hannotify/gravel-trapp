@@ -30,6 +30,7 @@ public class StandingsResource {
     }
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public List<StandingsEntry> getStandings() {
         return standingsProjector.calculateStandings();
     }

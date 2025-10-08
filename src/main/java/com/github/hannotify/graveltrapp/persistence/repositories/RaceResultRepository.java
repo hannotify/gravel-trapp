@@ -7,7 +7,7 @@ import jakarta.transaction.Transactional;
 
 import java.util.UUID;
 
-@Repository
+@Repository(dataStore = "jdbc/graveltrapp")
 @Transactional
 public interface RaceResultRepository extends CrudRepository<RaceResult, UUID> {
 }
