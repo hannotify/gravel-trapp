@@ -60,14 +60,14 @@ public class RestApiIT {
         var username = "joep";
         var password = "woof";
 
-//        createNewUser(username, password);
-//        var jwt = login(username, password);
+        createNewUser(username, password);
+        var jwt = login(username, password);
 
-//        assertThat(jwt).isNotNull();
+        assertThat(jwt).isNotNull();
 
         given()
                 .contentType(ContentType.JSON)
-//                .header("Authorization", "Bearer " + jwt)
+                .header("Authorization", "Bearer " + jwt)
                 .body("""
                         {
                             "raceId": "%s",

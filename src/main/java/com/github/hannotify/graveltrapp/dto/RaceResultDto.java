@@ -3,7 +3,6 @@ package com.github.hannotify.graveltrapp.dto;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.util.UUID;
