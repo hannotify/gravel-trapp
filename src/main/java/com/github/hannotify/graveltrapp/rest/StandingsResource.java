@@ -19,6 +19,7 @@ import java.util.List;
 
 @RequestScoped
 @Path("/standings")
+@PermitAll
 public class StandingsResource {
     private StandingsProjector standingsProjector;
 
