@@ -10,8 +10,10 @@
         <feature>persistence</feature>
         <feature>restfulWS</feature>
         <feature>jsonb</feature>
+        <feature>appSecurity</feature>
         <feature>mpOpenAPI</feature>
         <feature>mpFaultTolerance</feature>
+        <feature>mpJwt</feature>
     </featureManager>
 
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
@@ -46,6 +48,13 @@
 
     <!-- Default SSL configuration enables trust for default certificates from the Java runtime -->
     <ssl id="defaultSSLConfig" trustDefaultCerts="true" />
+
+    <cors domain="/gravel-trapp/api"
+              allowedOrigins="http://localhost:4200"
+              allowedMethods="GET, DELETE, POST, PUT, OPTIONS, HEAD"
+              allowedHeaders="Referer, Content-Type, Accept, Authorization"
+              allowCredentials="true"
+              maxAge="3600"/>
 
     <library id="jdbcLib">
         <fileset dir="jdbc" includes="*.jar"/>
