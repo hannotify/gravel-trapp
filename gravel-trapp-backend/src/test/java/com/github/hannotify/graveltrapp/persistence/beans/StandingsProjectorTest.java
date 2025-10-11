@@ -11,7 +11,6 @@ import org.mockito.Mockito;
 
 import java.time.Year;
 import java.util.List;
-import java.util.SequencedCollection;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
