@@ -10,8 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>25</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -25,7 +24,7 @@
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
-            <version>7.0</version>
+            <version>7.1</version>
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
@@ -46,9 +45,9 @@
                     <version>3.11.2</version>
                     <configuration>
                         <runtimeArtifact>
-                            <groupId>io.openliberty.beta</groupId>
+                            <groupId>io.openliberty</groupId>
                             <artifactId>openliberty-runtime</artifactId>
-                            <version>LATEST</version>
+                            <version>26.0.0.10</version>
                             <type>zip</type>
                         </runtimeArtifact>
                     </configuration>
