@@ -7,6 +7,7 @@
         <feature>cdi</feature>
         <feature>data</feature>
         <feature>persistence</feature>
+        <feature>servlet</feature>
     </featureManager>
 
     <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
