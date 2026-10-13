@@ -1,3 +1,8 @@
+delete from RaceResult;
+delete from Race;
+delete from Driver;
+delete from Team;
+
 insert into Team (id, name) values (UUID_TO_BIN(UUID()), 'Mercedes');
 insert into Team (id, name) values (UUID_TO_BIN(UUID()), 'Ferrari');
 insert into Team (id, name) values (UUID_TO_BIN(UUID()), 'Red Bull Racing');
